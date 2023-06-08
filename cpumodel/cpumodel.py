@@ -26,7 +26,11 @@ def clean_cpu_string(brand):
     # Strip annoying chars
     brand = brand.replace('(R)', '')
     brand = brand.replace('(TM)', '')
+    brand = brand.replace('(tm)', '')
     brand = brand.replace('CPU', '')
+
+    # Delete multiple spaces
+    re.sub(' +', ' ', brand)
 
     # Drop the '@ 2.40GHz' suffix
     brand = brand.split('@')[0]
