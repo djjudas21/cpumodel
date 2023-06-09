@@ -28,6 +28,7 @@ def clean_cpu_string(brand):
     brand = brand.replace('(TM)', '')
     brand = brand.replace('(tm)', '')
     brand = brand.replace('CPU', '')
+    brand = brand.replace('Processor', '')
 
     # Delete multiple spaces
     re.sub(' +', ' ', brand)
@@ -71,6 +72,7 @@ def parse_cpu(vendor, cpu):
 
     elif vendor == 'Intel' and 'Xeon' in cpu:
         # Intel(R) Xeon(R) Platinum 8167M CPU @ 2.00GHz
+        # Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
         # Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz
         # Intel(R) Xeon(R) Gold 5118 CPU @ 2.30GHz
         # Intel(R) Xeon(R) Gold 5120 CPU @ 2.20GHz
@@ -208,7 +210,7 @@ def parse_cpu(vendor, cpu):
         # AMD Ryzen 9 5950X 16-Core Processor
         # AMD Ryzen 9 7950X 16-Core Processor
         # AMD Ryzen Threadripper 3990X 64-Core Processor
-        result = re.search(r"AMD ((\w+ \d) (\d)\d+([A-Z]?))", cpu)
+        result = re.search(r"AMD ((\w+ \w+(?: PRO)?) (\d)\d+([A-Z]?))", cpu)
         cpulabels['cpuModel'] = result.group(1)
         cpulabels['cpuFamily'] = result.group(2)
         cpulabels['cpuGeneration'] = result.group(3)
@@ -221,8 +223,12 @@ def parse_cpu(vendor, cpu):
         # AMD EPYC 7642 48-Core Processor
         # AMD EPYC 7F52 16-Core Processor
         # AMD EPYC 7F72 24-Core Processor
-        result = re.search(r"AMD ((\w+ \d) (\d)\d+([A-Z]?))", cpu)
-        pass
+        # AMD EPYC 7551 32-Core Processor
+        result = re.search(r"AMD ((\w+ \d) (\d)\w{3}([A-Z]?))", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(3)
+        cpulabels['cpuLetter'] = result.group(4)
     elif vendor == 'AMD' and 'Opteron' in cpu:
         # AMD Opteron(tm) Processor 4133
         # AMD Opteron(tm) Processor 4310 EE
@@ -238,7 +244,11 @@ def parse_cpu(vendor, cpu):
         # Quad-Core AMD Opteron(tm) Processor 8356
         # Six-Core AMD Opteron(tm) Processor 2427
         # Six-Core AMD Opteron(tm) Processor 8431
-        pass
+        result = re.search(r"AMD (\w+) (\d{4}) ?([A-Z]{1,2}?))", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(3)
+        cpulabels['cpuLetter'] = result.group(4)
     elif vendor == 'AMD' and 'Athlon' in cpu:
         # AMD Athlon(tm) 5350 APU with Radeon(tm) R3
         pass
