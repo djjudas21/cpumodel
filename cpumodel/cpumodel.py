@@ -1,3 +1,6 @@
+"""
+A Python library to parse and return various attributes from the CPU string
+"""
 import re
 from cpuinfo import get_cpu_info
 from .intel import parse_intel_cpu
@@ -88,7 +91,7 @@ def get_cpu_model():
         labels.update(parse_amd_cpu(labels['cpuString']))
 
     # Drop None elements
-    labels = (drop_nones_inplace(labels))
+    labels = drop_nones_inplace(labels)
 
     return labels
 
@@ -100,4 +103,4 @@ def main():
     print(labels)
 
 if __name__ == '__main__':
-	main()
+    main()
