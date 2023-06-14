@@ -6,7 +6,7 @@ authors = ["Jonathan Gazeley <me@jonathangazeley.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 py-cpuinfo = "^9.0.0"
 
 
