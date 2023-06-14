@@ -9,6 +9,12 @@ useful output.
 If you want to request support for an unsupported CPU or if you see a bug in the output, see the
 Contributing section.
 
+## Installation
+
+```terminal
+pip install cpumodel
+```
+
 ## Usage
 
 ### As a library
