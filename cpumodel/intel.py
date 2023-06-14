@@ -5,6 +5,8 @@ import re
 def parse_intel_cpu(cpu):
     """
     Parse the CPU string to figure out some attributes
+    Remember the value of cpu has already been sanitised by clean_cpu_string()
+    so it won't contain (R), (TM), etc
     """
 
     cpulabels = {}
@@ -15,17 +17,29 @@ def parse_intel_cpu(cpu):
         # 12th Gen Intel(R) Core(TM) i7-1265U
         # 12th Gen Intel(R) Core(TM) i9-12900
         # 12th Gen Intel(R) Core(TM) i9-12900K
-        result = re.search(r"(\d{2})th Gen Intel (Core i\d)-(\w+)([A-Z])?", cpu)
-        cpulabels['cpuModel'] = result.group(0)
-        cpulabels['cpuFamily'] = result.group(2)
+        result = re.search(r"(\d{2})th Gen Intel ((Core i\d)-(\w+)([A-Z])?)", cpu)
+        cpulabels['cpuModel'] = result.group(2)
+        cpulabels['cpuFamily'] = result.group(3)
         cpulabels['cpuGeneration'] = result.group(1)
-        cpulabels['cpuLetter'] = result.group(4)
+        cpulabels['cpuLetter'] = result.group(5)
 
-    # Other, unhandled
-    # Intel(R) Celeron(R) CPU G1610 @ 2.60GHz
-    # Intel(R) Core(TM)2 Quad CPU    Q9550  @ 2.83GHz
+    elif 'Celeron' in cpu or 'Pentium' in cpu:
+        # Intel(R) Celeron(R) CPU G1610 @ 2.60GHz
+        result = re.search(r"Intel ((\w+) (\w)(\d)\d{3})", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(4)
+        cpulabels['cpuLetter'] = result.group(3)
 
-    elif 'Xeon' in cpu:
+    elif 'Core2' in cpu:
+        # Intel(R) Core(TM)2 Quad CPU    Q9550  @ 2.83GHz
+        result = re.search(r"Intel ((Core2 \w+) (\w)(\d)\d{3})", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(4)
+        cpulabels['cpuLetter'] = result.group(3)
+
+    elif 'Platinum' in cpu or 'Gold' in cpu or 'Silver' in cpu or 'Bronze' in cpu:
         # Intel(R) Xeon(R) Platinum 8167M CPU @ 2.00GHz
         # Intel(R) Xeon(R) Platinum 8358 CPU @ 2.60GHz
         # Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz
@@ -33,9 +47,13 @@ def parse_intel_cpu(cpu):
         # Intel(R) Xeon(R) Silver 4110 CPU @ 2.10GHz
         # Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz
         # Intel(R) Xeon(R) Bronze 3104 CPU @ 1.70GHz
-        pass
+        result = re.search(r"Intel ((Xeon \w+) (\d)\d{3}(\w)?)", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(3)
+        cpulabels['cpuLetter'] = result.group(4)
 
-    elif 'Xeon' in cpu:
+    elif 'E5' in cpu or 'E3' in cpu:
         # Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz
         # Intel(R) Xeon(R) CPU E5-2430L 0 @ 2.00GHz
         # Intel(R) Xeon(R) CPU E5-2687W 0 @ 3.10GHz
@@ -44,13 +62,23 @@ def parse_intel_cpu(cpu):
         # Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
         # Intel(R) Xeon(R) CPU E3-1220 v5 @ 3.00GHz
         # Intel(R) Xeon(R) CPU E3-1220 v6 @ 3.00GHz
+        result = re.search(r"Intel ((Xeon E\d)-\d{4}(\w)?(?: v(\d))?)", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(4)
+        cpulabels['cpuLetter'] = result.group(3)
 
+    elif 'Xeon' in cpu:
         # Intel(R) Xeon(R) CPU           E5405  @ 2.00GHz
         # Intel(R) Xeon(R) CPU           X5460  @ 3.16GHz
         # Intel(R) Xeon(R) E-2286G CPU @ 4.00GHz
         # Intel(R) Xeon(R) W-1350 @ 3.30GHz
         # Intel(R) Xeon(R) W-2125 CPU @ 4.00GHz
-        pass
+        result = re.search(r"Intel ((Xeon \w)-?(\d)\d{3}(\w)?)", cpu)
+        cpulabels['cpuModel'] = result.group(1)
+        cpulabels['cpuFamily'] = result.group(2)
+        cpulabels['cpuGeneration'] = result.group(3)
+        cpulabels['cpuLetter'] = result.group(4)
 
     elif 'Core' in cpu:
         # Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz
@@ -78,7 +106,7 @@ def parse_intel_cpu(cpu):
         # Intel(R) Core(TM) i9-10900 CPU @ 2.80GHz
         # Intel(R) Core(TM) i9-10900X CPU @ 3.70GHz
         # Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz
-        result = re.search(r"(i\d)-(\d)?\d{3}([A-Z])?", cpu)
+        result = re.search(r"(i\d)-(\d)?\d{3,4}(\w)?", cpu)
         cpulabels['cpuModel'] = result.group(0)
         cpulabels['cpuFamily'] = result.group(1)
         cpulabels['cpuGeneration'] = result.group(2)

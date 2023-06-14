@@ -5,6 +5,8 @@ import re
 def parse_amd_cpu(cpu):
     """
     Parse the CPU string to figure out some attributes
+    Remember the value of cpu has already been sanitised by clean_cpu_string()
+    so it won't contain (R), (TM), etc
     """
 
     cpulabels = {}
