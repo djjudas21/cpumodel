@@ -45,6 +45,7 @@ The best explanation of the data returned is probably by giving various examples
 |-------------|--------------------------------|-----------------|-------------|-----------------|-------------|
 | `AMD`       | `AMD Ryzen 7 5700G`            | `Ryzen 7 5700G` | `Ryzen 7`   | `5`             | `G`         |
 | `Intel`     | `12th Gen Intel Core i7-1265U` | `Core i7-1265U` | `Core i7`   | `12`            | `U`         |
+| `Intel`     | `Intel Core i5-6300U`          | `Core i5-6300U` | `Core i5`   | `6`             | `U`         |
 
 ## Contribution
 
