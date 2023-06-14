@@ -13,3 +13,6 @@ py-cpuinfo = "^9.0.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+cpumodel = 'cpumodel.cpumodel:main'
