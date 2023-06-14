@@ -41,9 +41,10 @@ This library returns up to 6 values (it is possible for values to be `None`)
 
 The best explanation of the data returned is probably by giving various examples.
 
-| `cpuVendor` | `cpuString`         | `cpuModel`      | `cpuFamily` | `cpuGeneration` | `cpuLetter` |
-|-------------|---------------------|-----------------|-------------|-----------------|-------------|
-| `AMD`       | `AMD Ryzen 7 5700G` | `Ryzen 7 5700G` | `Ryzen 7`   | `5`             | `G`         |
+| `cpuVendor` | `cpuString`                    | `cpuModel`      | `cpuFamily` | `cpuGeneration` | `cpuLetter` |
+|-------------|--------------------------------|-----------------|-------------|-----------------|-------------|
+| `AMD`       | `AMD Ryzen 7 5700G`            | `Ryzen 7 5700G` | `Ryzen 7`   | `5`             | `G`         |
+| `Intel`     | `12th Gen Intel Core i7-1265U` | `Core i7-1265U` | `Core i7`   | `12`            | `U`         |
 
 ## Contribution
 

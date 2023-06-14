@@ -17,11 +17,11 @@ def parse_intel_cpu(cpu):
         # 12th Gen Intel(R) Core(TM) i7-1265U
         # 12th Gen Intel(R) Core(TM) i9-12900
         # 12th Gen Intel(R) Core(TM) i9-12900K
-        result = re.search(r"(\d{2})th Gen Intel ((Core i\d)-(\w+)([A-Z])?)", cpu)
+        result = re.search(r"(\d{2})th Gen Intel ((Core i\d)-\d{4}0?(\w)?)", cpu)
         cpulabels['cpuModel'] = result.group(2)
         cpulabels['cpuFamily'] = result.group(3)
         cpulabels['cpuGeneration'] = result.group(1)
-        cpulabels['cpuLetter'] = result.group(5)
+        cpulabels['cpuLetter'] = result.group(4)
 
     elif 'Celeron' in cpu or 'Pentium' in cpu:
         # Intel(R) Celeron(R) CPU G1610 @ 2.60GHz
