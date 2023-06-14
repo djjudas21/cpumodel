@@ -49,7 +49,8 @@ The best explanation of the data returned is probably by giving various examples
 
 If this library doesn't work properly on your CPU, it's probably because I've never tested on a CPU of that type.
 
-Please open an issue, and describe what you would expect the output of this module to be, and include the output of this command:
+Please [open an issue](https://github.com/djjudas21/cpumodel/issues), and describe what you would expect the
+output of this module to be, and include the output of this command:
 
 ```sh
 grep 'model name' /proc/cpuinfo | sort -u
