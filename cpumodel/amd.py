@@ -1,3 +1,6 @@
+"""
+Logic to decode AMD CPUs
+"""
 import re
 def parse_amd_cpu(cpu):
     """

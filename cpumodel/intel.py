@@ -1,3 +1,6 @@
+"""
+Logic to decode Intel CPUs
+"""
 import re
 def parse_intel_cpu(cpu):
     """
