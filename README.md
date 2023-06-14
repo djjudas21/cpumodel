@@ -20,7 +20,7 @@ pip install cpumodel
 ### As a library
 
 ```py
-from cpumodel imnport get_cpu_model
+from cpumodel.cpumodel import get_cpu_model
 
 info = get_cpu_model()
 ```
