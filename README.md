@@ -55,12 +55,24 @@ This library returns up to 6 values (it is possible for values to be `None`)
 
 The best explanation of the data returned is probably by giving various examples.
 
-| `cpuVendor` | `cpuString`                    | `cpuModel`      | `cpuFamily` | `cpuGeneration` | `cpuLetter` |
-|-------------|--------------------------------|-----------------|-------------|-----------------|-------------|
-| `AMD`       | `AMD Ryzen 7 5700G`            | `Ryzen 7 5700G` | `Ryzen 7`   | `5`             | `G`         |
-| `Intel`     | `12th Gen Intel Core i7-1265U` | `Core i7-1265U` | `Core i7`   | `12`            | `U`         |
-| `Intel`     | `Intel Core i5-6300U`          | `Core i5-6300U` | `Core i5`   | `6`             | `U`         |
-| `Intel`     | `Intel Core i5-6500T`          | `Core i5-6500T` | `Core i5`   | `6`             | `T`         |
+| `cpuVendor` | `cpuString`                    | `cpuModel`                 | `cpuFamily`          | `cpuGeneration` | `cpuLetter` |
+|-------------|--------------------------------|----------------------------|----------------------|-----------------|-------------|
+| `Intel`     | `Intel Xeon Platinum 8358`     | `Xeon Platinum 8358`       | `Xeon Platinum`      | `8`             |             |
+| `Intel`     | `Intel Xeon Gold 6226R`        | `Xeon Gold 6226R`          | `Xeon Gold`          | `6`             | `R`         |
+| `Intel`     | `Intel Xeon E3-1220 v6`        | `Xeon E3-1220 v6`          | `Xeon E3`            | `6`             |             |
+| `Intel`     | `Intel Celeron G1610`          | `Celeron G1610`            | `Celeron`            | `1`             | `G`         |
+| `Intel`     | `Intel Core i5-6500T`          | `Core i5-6500T`            | `Core i5`            | `6`             | `T`         |
+| `Intel`     | `Intel Core i9-9900K`          | `Core i9-9900K`            | `Core i9`            | `9`             | `K`         |
+| `Intel`     | `Intel Core i9-10900`          | `Core i9-10900`            | `Core i9`            | `10`            |             |
+| `Intel`     | `12th Gen Intel Core i7-1265U` | `Core i7-1265U`            | `Core i7`            | `12`            | `U`         |
+| `Intel`     | `12th Gen Intel Core i9-12900` | `Core i9-12900`            | `Core i9`            | `12`            |             |
+| `AMD`       | `AMD Ryzen 7 5700G`            | `Ryzen 7 5700G`            | `Ryzen 7`            | `5`             | `G`         |
+| `AMD`       | `AMD Ryzen 7 PRO 5850U`        | `Ryzen 7 PRO 5850U`        | `Ryzen 7 PRO`        | `5`             | `U`         |
+| `AMD`       | `AMD Ryzen 9 7950X`            | `Ryzen 9 7950X`            | `Ryzen 9`            | `7`             | `X`         |
+| `AMD`       | `AMD Ryzen Threadripper 3990X` | `Ryzen Threadripper 3990X` | `Ryzen Threadripper` | `3`             | `X`         |
+| `AMD`       | `AMD Athlon 5350 APU`          | `Athlon 5350 APU`          | `Athlon`             | `5`             |             |
+| `AMD`       | `AMD Opteron 6366 HE`          | `Opteron 6366 H`           | `Opteron`            | `6366`          | `H`         |
+| `AMD`       | `AMD EPYC 7551P`               | `EPYC 7551P`               | `EPYC`               | `7`             | `P`         |
 
 ## Contribution
 
