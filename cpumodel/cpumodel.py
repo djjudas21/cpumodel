@@ -85,7 +85,7 @@ def drop_nones(d: dict) -> dict:
     return dd
 
 
-def get_cpu_model(cpustring):
+def get_cpu_model(cpustring=None):
     """
     Get info about the CPU model and return it as a dict
     """
