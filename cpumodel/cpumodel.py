@@ -50,9 +50,12 @@ def clean_cpu_string(brand):
 
     # Drop the 'with Radeon Graphics' suffix
     brand = brand.split('with')[0]
-    brand = brand.strip()
+
+    # Drop '64-Core'
+    brand = re.sub(r"\d+-Core", '', brand)
 
     # Delete multiple spaces
+    brand = brand.strip()
     brand = re.sub(r'\s+', ' ', brand)
 
     return brand
