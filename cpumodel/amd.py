@@ -43,7 +43,7 @@ def parse_amd_cpu(cpu):
         cpulabels['cpuLetter'] = result.group(4)
     elif 'APU' in cpu:
         # AMD Athlon(tm) 5350 APU with Radeon(tm) R3
-        result = re.search(r"AMD (((\w+) (\d)\d+) APU)", cpu)
+        result = re.search(r"AMD ((\w+) (\d)\d+ APU)", cpu)
         cpulabels['cpuModel'] = result.group(1)
         cpulabels['cpuFamily'] = result.group(2)
         cpulabels['cpuGeneration'] = result.group(3)
