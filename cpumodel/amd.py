@@ -36,7 +36,7 @@ def parse_amd_cpu(cpu):
         # AMD Opteron(tm) Processor 6366 HE
         # Quad-Core AMD Opteron(tm) Processor 8356
         # Six-Core AMD Opteron(tm) Processor 8431
-        result = re.search(r"AMD ((\w+) (\d{4}) ?([A-Z]{1,2}?)))", cpu)
+        result = re.search(r"AMD ((\w+) (\d{4}) ?([A-Z]{1,2}?))", cpu)
         cpulabels['cpuModel'] = result.group(1)
         cpulabels['cpuFamily'] = result.group(2)
         cpulabels['cpuGeneration'] = result.group(3)
