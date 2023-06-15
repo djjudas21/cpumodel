@@ -45,15 +45,15 @@ def clean_cpu_string(brand):
     brand = brand.replace('CPU', '')
     brand = brand.replace('Processor', '')
 
-    # Delete multiple spaces
-    re.sub(' +', ' ', brand)
-
     # Drop the '@ 2.40GHz' suffix
     brand = brand.split('@')[0]
 
     # Drop the 'with Radeon Graphics' suffix
     brand = brand.split('with')[0]
     brand = brand.strip()
+
+    # Delete multiple spaces
+    brand = re.sub(r'\s+', ' ', brand)
 
     return brand
 
