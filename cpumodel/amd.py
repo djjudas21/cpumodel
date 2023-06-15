@@ -25,7 +25,7 @@ def parse_amd_cpu(cpu):
         # AMD EPYC 7J13 64-Core Processor
         # AMD EPYC 7742 64-Core Processor
         # AMD EPYC 7551P 32-Core Processor
-        result = re.search(r"AMD ((\w+ \d) (\d)\w{3}([A-Z]?))", cpu)
+        result = re.search(r"AMD ((\w+) (\d)\w{3}([A-Z]?))", cpu)
         cpulabels['cpuModel'] = result.group(1)
         cpulabels['cpuFamily'] = result.group(2)
         cpulabels['cpuGeneration'] = result.group(3)
