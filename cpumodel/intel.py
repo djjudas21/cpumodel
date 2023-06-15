@@ -113,7 +113,7 @@ def parse_intel_cpu(cpu):
         # Intel(R) Core(TM) i9-10900 CPU @ 2.80GHz
         # Intel(R) Core(TM) i9-10900X CPU @ 3.70GHz
         # Intel(R) Core(TM) i9-10980XE CPU @ 3.00GHz
-        result = re.search(r"(Core i\d)-(\d)?\d{3,4}(\w)?", cpu)
+        result = re.search(r"(Core i\d)-(\d{1,2})?\d{3}(\w)?", cpu)
         cpulabels['cpuModel'] = result.group(0)
         cpulabels['cpuFamily'] = result.group(1)
         cpulabels['cpuGeneration'] = result.group(2)
