@@ -80,8 +80,15 @@ def parse_intel_cpu(cpu):
         cpulabels['cpuGeneration'] = result.group(3)
         cpulabels['cpuLetter'] = result.group(4)
 
-    elif 'Core' in cpu:
+    elif 'i7 ' in cpu or 'i5 ' in cpu or 'i3 ' in cpu:
         # Intel(R) Core(TM) i7 CPU         920  @ 2.67GHz
+        result = re.search(r"(Core i\d) \d{3}(\w)?", cpu)
+        cpulabels['cpuModel'] = result.group(0)
+        cpulabels['cpuFamily'] = result.group(1)
+        cpulabels['cpuGeneration'] = 1
+        cpulabels['cpuLetter'] = result.group(2)
+
+    elif 'Core' in cpu:
         # Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
         # Intel(R) Core(TM) i7-2600S CPU @ 2.80GHz
         # Intel(R) Core(TM) i5-2410M CPU @ 2.30GHz
