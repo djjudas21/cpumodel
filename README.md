@@ -32,6 +32,14 @@ $ cpumodel
 {'cpuVendor': 'AMD', 'cpuString': 'AMD Ryzen 7 5700G', 'cpuModel': 'Ryzen 7 5700G', 'cpuFamily': 'Ryzen 7', 'cpuGeneration': '5', 'cpuLetter': 'G'}
 ```
 
+You can optionally supply a CPU string with `-t` or `--test` which will cause cpumodel to parse this CPU
+string rather than get the local system's CPU string. This is useful for testing the logic.
+
+```terminal
+$ cpumodel -t "Intel(R) Xeon(R) Gold 6234 CPU @ 3.30GHz"
+{'cpuVendor': 'Intel', 'cpuString': 'Intel Xeon Gold 6234', 'cpuModel': 'Xeon Gold 6234', 'cpuFamily': 'Xeon Gold', 'cpuGeneration': '6'}
+```
+
 ## Output
 
 This library returns up to 6 values (it is possible for values to be `None`)

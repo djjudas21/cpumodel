@@ -2,6 +2,7 @@
 A Python library to parse and return various attributes from the CPU string
 """
 import re
+import argparse
 from cpuinfo import get_cpu_info
 from .intel import parse_intel_cpu
 from .amd import parse_amd_cpu
@@ -18,6 +19,15 @@ def map_vendor(vendor):
         returnval = vendor
     return returnval
 
+def guess_vendor(cpustring):
+    """
+    Attempt to guess a CPU vendor from its string
+    """
+    if 'Intel' in cpustring:
+        vendor = 'Intel'
+    elif 'AMD' in cpustring:
+        vendor = 'AMD'
+    return vendor
 
 def clean_cpu_string(brand):
     """
@@ -72,12 +82,19 @@ def drop_nones(d: dict) -> dict:
     return dd
 
 
-def get_cpu_model():
+def get_cpu_model(cpustring):
     """
     Get info about the CPU model and return it as a dict
     """
-    # Fetch CPU info
-    cpuinfo = get_cpu_info()
+
+    if cpustring:
+        # Use supplied CPU string
+        cpuinfo = {}
+        cpuinfo['vendor_id_raw'] = guess_vendor(cpustring)
+        cpuinfo['brand_raw'] = cpustring
+    else:
+        # Fetch CPU info from system
+        cpuinfo = get_cpu_info()
 
     # Generate basic labels
     labels = {}
@@ -99,7 +116,13 @@ def main():
     """
     Display CPU model info to a human user
     """
-    labels = get_cpu_model()
+
+    # Read in args
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--test', help="Supply a CPU string rather than obtaining it from the system", type=str)
+    args = parser.parse_args()
+
+    labels = get_cpu_model(args.test)
     print(labels)
 
 if __name__ == '__main__':

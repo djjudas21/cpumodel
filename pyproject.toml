@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.9"
 py-cpuinfo = "^9.0.0"
+argparse = "^1.4.0"
 
 
 [tool.poetry.group.dev.dependencies]
