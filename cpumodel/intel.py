@@ -53,7 +53,7 @@ def parse_intel_cpu(cpu):
         cpulabels['cpuGeneration'] = result.group(3)
         cpulabels['cpuLetter'] = result.group(4)
 
-    elif 'E5' in cpu or 'E3' in cpu:
+    elif 'E5-' in cpu or 'E3-' in cpu:
         # Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz
         # Intel(R) Xeon(R) CPU E5-2430L 0 @ 2.00GHz
         # Intel(R) Xeon(R) CPU E5-2687W 0 @ 3.10GHz
