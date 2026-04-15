@@ -23,6 +23,7 @@ def guess_vendor(cpustring):
     """
     Attempt to guess a CPU vendor from its string
     """
+    vendor = None
     if 'Intel' in cpustring:
         vendor = 'Intel'
     elif 'AMD' in cpustring:
